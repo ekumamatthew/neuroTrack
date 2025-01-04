@@ -50,7 +50,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     if (_formKey.currentState!.validate()) {
       _formKey.currentState!.save();
       var url = Uri.parse(
-          'https://stress-bee.onrender.com/api/participants/${widget.participant.id}/episode');
+          'https://neurotrackapi.onrender.com/api/participants/${widget.participant.id}/episode');
       try {
         var response = await http.post(
           url,
@@ -130,7 +130,9 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
                             return null;
                           },
                         ),
-                        SizedBox(height: 20,),
+                        SizedBox(
+                          height: 20,
+                        ),
                         ElevatedButton(
                           onPressed: _submitForm,
                           child: const Text(
@@ -149,7 +151,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 final episode = widget.participant.episodes[index];
-                var nasavalue = episode.FINAL_STRESS;
+                var stressvalue = episode.FINAL_STRESS;
                 return Column(
                   children: [
                     Card(
@@ -164,18 +166,13 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
                                 'STRESS BEFORE TASK: ${episode.INITIAL_STRESS.toStringAsFixed(2)}'),
                             Text(
                                 'STRESS AFTER TASK: ${episode.FINAL_STRESS.toStringAsFixed(2)}'),
-                            Text(
-                              nasavalue >= 80
-                                  ? 'High Stress'
-                                  : nasavalue >= 50
-                                      ? 'Elevated Stress'
-                                      : nasavalue >= 30
-                                          ? 'Mildly Elevated Stress'
-                                          : nasavalue >= 10
-                                              ? 'Moderate Stress'
-                                              : 'Minimal Stress',
-                              // Additional styling can be applied here
-                            ),
+                            Text(stressvalue >= 80
+                                    ? 'High Stress'
+                                    : stressvalue >= 50
+                                        ? 'Moderate Stress'
+                                        : 'Low Stress'
+                                // Additional styling can be applied here
+                                ),
                           ],
                         ),
                         trailing: Row(
@@ -324,8 +321,8 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
       'INITIAL_STRESS': initialValue,
     });
 
-    final url = Uri.parse(
-        'https://stress-bee.onrender.com/api/participants/$participantId/episode');
+    final url =
+        Uri.parse('https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
 
     try {
       print("Request Data: $data");
@@ -403,8 +400,8 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
 
   void _deleteEpisode(String participantId) async {
     String? userToken = await storage.read(key: 'userToken');
-    var url = Uri.parse(
-        'https://stress-bee.onrender.com/api/participants/$participantId/episode');
+    var url =
+        Uri.parse('https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
     try {
       var response = await http.delete(
         url,
@@ -429,7 +426,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
   void _handleDelete() async {
     String? userToken = await storage.read(key: 'userToken');
     var url = Uri.parse(
-        'https://stress-bee.onrender.com/api/participants/${widget.participant.id}');
+        'https://neurotrackapi.onrender.com/api/participants/${widget.participant.id}');
 
     try {
       var response = await http.delete(

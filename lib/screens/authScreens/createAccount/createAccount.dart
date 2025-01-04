@@ -30,8 +30,8 @@ class _CreateAccountState extends State<CreateAccount> {
       _isSubmitting = true; // Start loading
     });
 
-    var data = {'name': fullName, 'password': password, 'username': email};
-    var url = Uri.parse('https://stress-bee.onrender.com/api/auth/register');
+    var data = {'name': fullName.toLowerCase(), 'password': password, 'username': email};
+    var url = Uri.parse('https://neurotrackapi.onrender.com/api/auth/register');
 
     try {
       var response = await http.post(url, body: data);
@@ -126,12 +126,12 @@ class _CreateAccountState extends State<CreateAccount> {
                         const SizedBox(height: 30),
                         TextFormField(
                           decoration: const InputDecoration(
-                            labelText: "Full Name",
+                            labelText: "Username",
                             border: OutlineInputBorder(),
                           ),
                           validator: (value) {
                             if (value == null || value.isEmpty) {
-                              return "Full name is required";
+                              return "Username is required";
                             }
                             return null;
                           },

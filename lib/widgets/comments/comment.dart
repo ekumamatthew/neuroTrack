@@ -46,7 +46,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     String? participantId = widget.userId.toString();
     try {
       var url = Uri.parse(
-          'https://stress-bee.onrender.com/api/participants/$participantId/comment');
+          'https://neurotrackapi.onrender.com/api/participants/$participantId/comment');
       var response = await http.get(
         url,
         headers: {'Authorization': 'Bearer $userToken'},
@@ -176,7 +176,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     print(participantId);
     print('dollar: $comment');
     var url = Uri.parse(
-        'https://stress-bee.onrender.com/api/participants/$participantId/comment');
+        'https://neurotrackapi.onrender.com/api/participants/$participantId/comment');
     var data = {'comment': comment};
     try {
       var response = await http.post(

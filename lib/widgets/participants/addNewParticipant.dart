@@ -36,10 +36,10 @@ class _AddParticipantScreenState extends State<AddParticipantScreen> {
       setState(() {
         _isSubmitting = true; // Start loading
       });
-      var url = Uri.parse('https://stress-bee.onrender.com/api/participants');
+      var url =
+          Uri.parse('https://neurotrackapi.onrender.com/api/participants');
 
-      var data = {'name': participant};
-
+      var data = {'name': participant.toLowerCase()};
       try {
         var response = await http.post(
           url,

@@ -62,7 +62,7 @@ class _DashboardState extends State<Dashboard> {
       }
 
       var url = Uri.parse(
-          'https://stress-bee.onrender.com/api/participants?role=${Uri.encodeComponent(userRole)}&name=${Uri.encodeComponent(userName)}');
+          'https://neurotrackapi.onrender.com/api/participants?role=${Uri.encodeComponent(userRole)}&name=${Uri.encodeComponent(userName)}');
       print('Request URL: $url');
 
       print("Sending request to URL: $url");
@@ -185,12 +185,11 @@ class _DashboardState extends State<Dashboard> {
         height: 35,
         child: TextField(
           controller: _searchController,
-
           decoration: InputDecoration(
             labelStyle: const TextStyle(color: AppColor.blue),
             iconColor: AppColor.blue,
             labelText: 'Search Member',
-          prefixIconColor: AppColor.blue,
+            prefixIconColor: AppColor.blue,
             prefixIcon: const Icon(Icons.search),
             contentPadding: const EdgeInsets.symmetric(vertical: 0.0),
             border: const OutlineInputBorder(
@@ -200,7 +199,7 @@ class _DashboardState extends State<Dashboard> {
             filled: true,
             fillColor: Colors.grey[200],
           ),
-           onChanged: (query) {
+          onChanged: (query) {
             _filterParticipants(); // Filter participants on text change
           },
         ),
