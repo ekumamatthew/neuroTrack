@@ -1,4 +1,9 @@
 // file: lib/screens/participant_detail_screen.dart
+
+/**
+ * THis screen display participant episode details and you can can edit, delete and update episode. you can also delete the participant from here
+ */
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -45,6 +50,8 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     });
   }
 
+
+//create participant episode function
   void _submitForm() async {
     String? userToken = await storage.read(key: 'userToken');
     if (_formKey.currentState!.validate()) {
@@ -81,11 +88,12 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     }
   }
 
+//participant details screen
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stress Level details for ${widget.participant.name}'),
+        title: Text('Stress details for ${widget.participant.name}'),
       ),
       body: CustomScrollView(
         slivers: <Widget>[
@@ -222,7 +230,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     // Initialize controllers with existing values (no .toString() needed)
     final INITIAL_STRESSController = TextEditingController(text: '');
     final FINAL_STRESSController = TextEditingController(text: '');
-
+// Edit participant modal
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -246,10 +254,10 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
                         style: TextStyle(color: AppColor.white),
                         controller: INITIAL_STRESSController,
                         decoration: const InputDecoration(
-                            labelText: 'Stress Level Before '),
+                            labelText: 'Stress Level before task'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a valid Stress Level Before ';
+                            return 'Please enter a valid Stress Level before task';
                           }
                           return null;
                         },
@@ -260,10 +268,10 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
                         style: TextStyle(color: AppColor.white),
                         controller: FINAL_STRESSController,
                         decoration: const InputDecoration(
-                            labelText: 'Stress Level After'),
+                            labelText: 'Stress Level after task'),
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'Please enter a valid Stress Level After';
+                            return 'Please enter a valid Stress Level after task';
                           }
                           return null;
                         },
@@ -305,6 +313,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     );
   }
 
+// edit paticipant function
   Future<void> _updateEpisode(
     String participantId,
     TextEditingController INITIAL_STRESSController,
@@ -321,8 +330,8 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
       'INITIAL_STRESS': initialValue,
     });
 
-    final url =
-        Uri.parse('https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
+    final url = Uri.parse(
+        'https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
 
     try {
       print("Request Data: $data");
@@ -357,7 +366,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
       CustomSnackbar.show(context, "Error: Failed to Update Episode. $e");
     }
   }
-
+// deleparticipant confirmation modal
   void _showDeleteConfirmationDialog(String participantId) {
     showDialog(
       context: context,
@@ -398,10 +407,11 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     );
   }
 
+// delete participant episode function
   void _deleteEpisode(String participantId) async {
     String? userToken = await storage.read(key: 'userToken');
-    var url =
-        Uri.parse('https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
+    var url = Uri.parse(
+        'https://neurotrackapi.onrender.com/api/participants/$participantId/episode');
     try {
       var response = await http.delete(
         url,
@@ -422,7 +432,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
       CustomSnackbar.show(context, "Error: Failed to Delete Episode. $e");
     }
   }
-
+//delete participant function
   void _handleDelete() async {
     String? userToken = await storage.read(key: 'userToken');
     var url = Uri.parse(
@@ -450,6 +460,7 @@ class _ParticipantDetailScreenState extends State<ParticipantDetailScreen> {
     }
   }
 
+//delete participant function
   void _showDeleteParticipantConfirmationDialog() {
     showDialog(
       context: context,

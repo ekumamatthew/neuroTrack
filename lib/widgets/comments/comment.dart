@@ -33,6 +33,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     _fetchComments();
   }
 
+// fetch comments
   Future<void> _fetchRole() async {
     final storage = const FlutterSecureStorage();
     String? role = await storage.read(key: 'role');
@@ -71,6 +72,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     }
   }
 
+// comments widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -120,6 +122,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     );
   }
 
+// show comments modals
   void _showAddCommentDialog() {
     TextEditingController commentController = TextEditingController();
     showDialog(
@@ -170,6 +173,7 @@ class _CommentDetailScreenState extends State<CommentDetailScreen> {
     );
   }
 
+// submit comment function
   Future<void> _submitComment(String comment) async {
     String? userToken = await storage.read(key: 'userToken');
     String? participantId = widget.userId.toString();

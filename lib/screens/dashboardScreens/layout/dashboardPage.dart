@@ -1,3 +1,13 @@
+
+/**
+ * This is The Dashboard main screen Where other screens are linked to. Screens linked here includes
+ * -Participant details screen
+ * -Participant comment screen
+ * NOTE: Dont find the screen route here. is is refrenced as a widget. the participant expansion tile widget on line 170
+ * ctrl + click to enter any referenced widget
+ */
+
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -93,8 +103,7 @@ class _DashboardState extends State<Dashboard> {
     return participantsList;
   }
 
-  // Filter participants based on role and name
-
+  // Filter participants from search bar
   void _filterParticipants() {
     String searchQuery = _searchController.text.toLowerCase();
     List<ParticipantData> filteredParticipants;
@@ -112,6 +121,7 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+// Referesh participant list
   Future<void> _refreshParticipants() async {
     List<ParticipantData> participants = await _fetchParticipants();
     setState(() {
@@ -121,6 +131,7 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+// fetch participant role
   Future<void> _fetchRole() async {
     String? role = await storage.read(key: 'role');
     setState(() {
@@ -128,6 +139,8 @@ class _DashboardState extends State<Dashboard> {
     });
   }
 
+
+//dashboard widget
   @override
   Widget build(BuildContext context) {
     // ignore: deprecated_member_use

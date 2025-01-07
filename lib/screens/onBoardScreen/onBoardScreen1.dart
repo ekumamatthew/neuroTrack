@@ -1,3 +1,9 @@
+/**
+ * The onboarding screen controls the route selection for Create account and login
+ *
+ *
+ */
+
 import 'package:flutter/material.dart';
 import "package:neuroTrack/screens/authScreens/createAccount/createAccount.dart";
 import 'package:neuroTrack/screens/authScreens/signin/signin.dart';

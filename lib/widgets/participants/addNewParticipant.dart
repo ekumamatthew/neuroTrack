@@ -1,3 +1,9 @@
+
+/**
+ * This screens is for adding a new participant
+ *
+ */
+
 import 'dart:convert';
 
 import 'package:flutter/material.dart';

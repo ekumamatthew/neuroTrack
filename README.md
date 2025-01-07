@@ -1,8 +1,30 @@
-# neuroTrack
+# NeuroTrack
 
-Artifitial intelligience meets Fintech and InsurTech.
+Stress Record Analytics
 
 ## Getting Started
+
+- To install app dependencies, ensure you are in the app directory
+
+# flutter pub get
+
+- To run the app
+
+# flutter run
+
+- To create a release build file
+
+# flutter build apk --release
+
+- To create a build file with split abi this code builds [app-armeabi-v7a-release.apk], [app-arm64-v8a-release.apk], [app-x86_64-release.apk]
+
+# flutter build apk --split-per-abi
+
+- Launcher Icon : after setting the app icon in pubspec file
+
+# flutter pub run flutter_launcher_icons:main
+
+-
 
 This project is a starting point for a Flutter application.
 

@@ -1,3 +1,7 @@
+/**
+ * This page handles participants fetched from the api
+ */
+
 import 'package:flutter/material.dart';
 import 'package:neuroTrack/data/participants.dart';
 import 'package:neuroTrack/widgets/participants/participant_entension_tile.dart';
